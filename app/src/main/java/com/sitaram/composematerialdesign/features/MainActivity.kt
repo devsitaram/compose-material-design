@@ -1,4 +1,4 @@
-package com.sitaram.composematerialdesign
+package com.sitaram.composematerialdesign.features
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
