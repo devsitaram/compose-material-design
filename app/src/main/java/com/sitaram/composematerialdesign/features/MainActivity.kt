@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
@@ -20,6 +21,7 @@ import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ShapeDefaults
 import androidx.compose.material3.Surface
@@ -42,6 +44,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.sitaram.composematerialdesign.features.material.MainScreen
 import com.sitaram.composematerialdesign.features.material_design.MaterialDesign2MainScreen
 
 class MainActivity : ComponentActivity() {
@@ -78,127 +81,6 @@ fun ComposeDesignAppNavHost(navController: NavHostController) {
         // material design 2
         composable("MaterialDesign") {
             MaterialDesign2MainScreen()
-        }
-    }
-}
-
-@Composable
-fun MainScreen(navController: NavHostController) {
-    Surface(modifier = Modifier.fillMaxSize()) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(25.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = "Compose Material Design",
-                style = TextStyle(
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Normal
-                )
-            )
-            Column(
-                modifier = Modifier.padding(top = 50.dp)
-            ) {
-                Text(text = "Specifications", style = TextStyle(fontSize = 15.sp))
-                Spacer(modifier = Modifier.padding(top = 15.dp))
-                // material design
-                MaterialDesignTypeOfUi(
-                    title = "Material Design",
-                    subTitle = "androidx.compose.material",
-                    onClickAction = { navController.navigate("MaterialDesign") }
-                )
-                // material design 3
-                MaterialDesignTypeOfUi(
-                    title = "Material Design 3",
-                    subTitle = "android.compose.material3",
-                    onClickAction = { navController.navigate("MaterialDesign3") }
-                )
-            }
-        }
-    }
-}
-
-@Preview
-@Composable
-fun MainScreens() {
-    val navController = rememberNavController()
-    Surface(modifier = Modifier.fillMaxSize()) {
-        Column(
-            modifier = Modifier.fillMaxWidth()
-                .padding(15.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = "Compose Material Design",
-                style = TextStyle(
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Normal
-                )
-            )
-            Column(
-                modifier = Modifier.padding(top = 50.dp).wrapContentWidth()
-            ) {
-                Text(text = "Specifications", style = TextStyle(fontSize = 15.sp))
-                Spacer(modifier = Modifier.padding(top = 15.dp))
-                // material design
-                MaterialDesignTypeOfUi(
-                    title = "Material Design",
-                    subTitle = "androidx.compose.material",
-                    onClickAction = { navController.navigate("MaterialDesign") }
-                )
-                // material design 3
-                MaterialDesignTypeOfUi(
-                    title = "Material Design 3",
-                    subTitle = "androidx.compose.material3",
-                    onClickAction = { navController.navigate("MaterialDesign3") }
-                )
-            }
-        }
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun MaterialDesignTypeOfUi(title: String, subTitle: String, onClickAction: () -> Unit, modifier: Modifier = Modifier) {
-    Card(
-        modifier = modifier
-            .padding(5.dp)
-            .border(width = 1.dp, color = Color.DarkGray, shape = ShapeDefaults.Small),
-        onClick = onClickAction
-    ) {
-        Row(
-            modifier = Modifier
-                .background(Color.White)
-                .padding(15.dp).wrapContentWidth()
-                .width(IntrinsicSize.Max), // Set the width to the maximum intrinsic width
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Column(
-                modifier = Modifier
-                    .weight(1f) // Occupy the remaining available width in the Row
-            ) {
-                Text(
-                    text = title,
-                    style = TextStyle(
-                        fontSize = 15.sp,
-                        fontWeight = FontWeight.SemiBold
-                    ),
-                )
-                Text(
-                    text = subTitle,
-                    style = TextStyle(fontSize = 12.sp),
-                    modifier = Modifier.padding(top = 5.dp)
-                )
-            }
-            Spacer(modifier = Modifier.width(100.dp))
-            Icon(
-                imageVector = Icons.Default.KeyboardArrowRight,
-                contentDescription = null,
-                modifier = Modifier
-                    .size(30.dp)
-            )
         }
     }
 }
